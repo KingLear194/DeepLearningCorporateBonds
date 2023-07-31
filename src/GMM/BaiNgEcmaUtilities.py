@@ -1,15 +1,16 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Mar 10 20:22:39 2021
+
+@author: jed-pitt
+"""
+
 import pandas as pd
 import numpy as np
 from python_nw import newey
 import math
 from pcaversions import pcask
-
-
-
-# Load data from macro_clean
-
-#macro = pd.read_pickle(f'{path}/int/macro_clean.pkl')
-#macroagg = macro.drop(columns = ['date'])
 
 
 """ 
@@ -302,146 +303,3 @@ def pcprint(df,pc,kmax,lo,hi,step = None,num = None):
             print('1 component became optimal')
             return        
       
-        
-#### results from trials
-
-# print results of the IC as the hyperparameter moves around from 0.1 to 1
-
-#def icprint(df,ic,mma):
-    
-#    for j in range(1,11):
-#        indices = minimizeic(df,mma,ic,0.1*j)
-#        print("With penalty weight", f"{round(0.1*j,2)}", "the minimizers are", indices)
-        
-
-
- 
-      
-#icprint(macroagg,icbaing_2,130)    
-#With penalty weight 0.1 the minimizers are [67]
-#With penalty weight 0.2 the minimizers are [62]
-#With penalty weight 0.3 the minimizers are [62]
-#With penalty weight 0.4 the minimizers are [59]
-#With penalty weight 0.5 the minimizers are [45]
-#With penalty weight 0.6 the minimizers are [45]
-#With penalty weight 0.7 the minimizers are [45]
-#With penalty weight 0.8 the minimizers are [45]
-#With penalty weight 0.9 the minimizers are [1]
-#With penalty weight 1.0 the minimizers are [1]
-
-
-#icprint(macroagg,icbaing_3,130)    
-#With penalty weight 0.1 the minimizers are [67]
-#With penalty weight 0.2 the minimizers are [67]
-#With penalty weight 0.3 the minimizers are [62]
-#With penalty weight 0.4 the minimizers are [59]
-#With penalty weight 0.5 the minimizers are [59]
-#With penalty weight 0.6 the minimizers are [45]
-#With penalty weight 0.7 the minimizers are [45]
-#With penalty weight 0.8 the minimizers are [45]
-#With penalty weight 0.9 the minimizers are [45]
-#With penalty weight 1.0 the minimizers are [45]
-
-
-
-# we try to see for which parameter values we get something meaningful    
-# we focus first on icbaing_3
-    
-#icprint(macroagg,icbaing_3,130,1.0,1.5,0.01,None)  
-#With penalty weight 1.0 the minimizers are [45]
-#With penalty weight 1.01 the minimizers are [1]
-#1 component became optimal
-
-#icprint2(macroagg,icbaing_3,130,1.0,1.5,None,None)  
-# should produce error
-
-# we zoom in the interval (1,1.01)
-#icprint(macroagg,icbaing_3,130,1.0,1.01,0.001,None)    
-#With penalty weight 1.0 the minimizers are [45]
-#With penalty weight 1.001 the minimizers are [45]
-#With penalty weight 1.002 the minimizers are [45]
-#With penalty weight 1.003 the minimizers are [45]
-#With penalty weight 1.004 the minimizers are [45]
-#With penalty weight 1.005 the minimizers are [45]
-#With penalty weight 1.006 the minimizers are [45]
-#With penalty weight 1.007 the minimizers are [45]
-#With penalty weight 1.008 the minimizers are [45]
-#With penalty weight 1.009 the minimizers are [45]
-#With penalty weight 1.01 the minimizers are [1]
-#1 component became optimal
-
-# we zoom in the interval (1.009,1.01)
-#icprint(macroagg,icbaing_3,130,1.009,1.01,0.0001,None)    
-#With penalty weight 1.009 the minimizers are [45]
-#With penalty weight 1.0091 the minimizers are [45]
-#With penalty weight 1.0092 the minimizers are [45]
-#With penalty weight 1.0093 the minimizers are [45]
-#With penalty weight 1.0094 the minimizers are [45]
-#With penalty weight 1.0095 the minimizers are [45]
-#With penalty weight 1.0096 the minimizers are [45]
-#With penalty weight 1.0097 the minimizers are [45]
-#With penalty weight 1.0098 the minimizers are [45]
-#With penalty weight 1.0099 the minimizers are [1]
-#1 component became optimal
-
-#icprint(macroagg,icbaing_3,130,1.0098,1.099,step = None,num = 20)    
-#With penalty weight 1.0098 the minimizers are [45]
-#With penalty weight 1.01449 the minimizers are [1]
-#1 component became optimal
-
-#icprint(macroagg,icbaing_3,130,1.0098,1.01449,step = None,num = 20)    
-#With penalty weight 1.0098 the minimizers are [45]
-#With penalty weight 1.010047 the minimizers are [1]
-#1 component became optimal 
-
-#icprint(macroagg,icbaing_3,130,1.0098,1.01,step = None,num = 20)  
-#With penalty weight 1.0098 the minimizers are [45]
-#With penalty weight 1.00981053 the minimizers are [45]
-#With penalty weight 1.00982105 the minimizers are [45]
-#With penalty weight 1.00983158 the minimizers are [45]
-#With penalty weight 1.00984211 the minimizers are [45]
-#With penalty weight 1.00985263 the minimizers are [45]
-#With penalty weight 1.00986316 the minimizers are [45]
-#With penalty weight 1.00987368 the minimizers are [1]
-
-
-## we try the PC criteria
-
-
-
-
-
-### another approach: we see with pcaskpercent how many factors explain x% of time series
-
-#components, expvar = pcaskpercent(macroagg,0.995)
-
-
-#X = macroagg.to_numpy()
-
-#n = 10
-#pca = PCA(n_components = n, svd_solver='full')
-#components = pca.fit_transform(X)
-#expvar = pca.explained_variance_ratio_
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -11,14 +11,11 @@ For a shorter project summary than the full paper go to ```project_summary.md```
 ## Code organization
 
 The code for the project is under ```src```.
+See the file ```requirements.txt``` for the packages under which code has been tested. Need to change paths as needed to run the scripts.
 
-The code for the neural networks SDF and beta estimation exercise is under src/NN. The code with example files for the preprocessing is under ```src/NN/PreprocessingFiles```. Finally, ```src/NN/SlurmScripts``` contains slurm scripts for running on a cluster.
-
+The code for the neural networks SDF and beta estimation exercise is under ```src/NN```. The code with example files for the preprocessing is under ```src/NN/PreprocessingFiles```. Finally, ```src/NN/SlurmScripts``` contains slurm scripts for running on a cluster.
 The code for the GMM exercise is under ```src/GMM```. 
-
 The code for the Gaussian HMM is under ```src/HMM``` (one file only). 
-
-See the file ```src/requirements.txt``` for the packages under which code has been tested. Need to change paths as needed to run the scripts.
 
 ## How to run
 
@@ -29,7 +26,7 @@ The slurm submission files for neural networks estimations of the SDF are simila
 Note: the beta net estimation allows in addition for data parallelism across multiple GPUs on one cluster node. This has been tested. We do not post a version of the SR-max, MP-min or GAN networks with data parallelism since they have not yet been tested.
 
 - For the SDF estimation using SR-max, MP-min: 
-  First run a respective preprocessing file producing the inputs for the neural networks exercise. Then, for the SDF estimation, change the job numbers and the project_name accordingly in the ```slurm_sdf_estimation.sh``` under ```src/SlurmScripts```. Then submit ```slurm_sdf_estimation.sh``` with the sbatch command:
+  First run a respective preprocessing file producing the inputs for the neural networks exercise. Then, for the SDF estimation, change the job numbers and the project_name accordingly in the ```slurm_sdf_estimation.sh``` under ```src/NN/SlurmScripts```. Then submit ```slurm_sdf_estimation.sh``` with the sbatch command:
 
       sbatch slurm_sdf_estimation.sh
 
