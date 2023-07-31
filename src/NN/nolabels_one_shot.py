@@ -5,7 +5,8 @@ Created on Wed Nov 10 11:30:10 2021
 
 @author: jed169
 
-A script for a one-shot Training for the MP and SR models. Called 'nolabels' because the 
+A script for a one-shot Training for the MP and SR models. 
+Called 'nolabels' because there is no prediction here, just minimizing a statistical loss given data.
 
 """
 

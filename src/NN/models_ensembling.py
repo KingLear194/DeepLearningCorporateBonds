@@ -4,6 +4,9 @@
 Created on Tue Feb  8 12:43:39 2022
 
 @author: jed169
+
+Script to ensemble all models, including Beta, SDF with both Sharpe max approach and Mispricing Loss Approach, and 
+GAN
 """
 import os
 

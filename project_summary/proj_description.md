@@ -194,7 +194,7 @@ This allows for somewhat higher leverage in the case of bond-level data, to glea
 - $L^1$ regularization: ["none", 0.001, 0.01, 0.1]
 - $L^2$ regularization: ["none", 0.001, 0.01, 0.1]
 
-## 4. Results {#results}
+## 4. Results{#results}
 
 Winning hyperparameters for every estimation can be found in the appendix to the [paper](https://drive.google.com/file/d/1bjoZ1UWcAT0L4ePAecm2yIl7ba9Id9aQ/view?usp=sharing). All results below are reported for the respective test set. 
 
@@ -375,7 +375,7 @@ The following graphs depict cumulative excess returns and drawdown in the common
 
 We have also tried the GAN network using industry stock portfolios from [Kenneth French's website](https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/Data_Library/det_10_ind_port.html). Comparing to SR-max for the same asset universe, and same hyperparameters we find that the Sharpe ratio is higher, but now the Sortino and Calmar ratios are lower. Leverage is higher and the typical as well as maximal drawdown also higher. For this particular dataset we find no alpha w.r.t. FF3 and FF5 factors for neither the GAN network, nor the Sharpe ratio maximization approach.
 
-## 4. Code organization {#codeorga}
+## 4. Code organization{#codeorga}
 
 The code for the neural networks SDF and beta estimation exercise is under src/NN. The code with example files for the preprocessing is under ```src/NN/PreprocessingFiles```. Finally, ```src/NN/SlurmScripts``` contains slurm scripts for running on a cluster.
 
@@ -385,7 +385,7 @@ The code for the Gaussian HMM is under ```src/HMM``` (one file only).
 
 See the file requirements.txt for the packages under which code has been tested. Need to change paths as needed to run the scripts.
 
-### 4.1 How to run {#run}
+### 4.1 How to run{#run}
 
 First create a conda environment with minimal requirements as in ```requirements.txt```. 
 
