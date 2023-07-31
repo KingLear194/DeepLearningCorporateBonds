@@ -8,7 +8,7 @@ Created on Thu Apr 15 12:52:02 2021
 
 import os
 
-import settings
+import gmm_paths
 
 import pandas as pd
 import numpy as np

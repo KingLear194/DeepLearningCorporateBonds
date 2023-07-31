@@ -11,74 +11,78 @@ Note: Many academic books contain a detailed and more formal exposition of the f
 
 An asset pricing model is based on the **no arbitrage** logic of capital markets: prices of distinct assets tend to evolve in such a way that opportunities to make easy profits by buying and selling disappear quickly. 
 
-For an asset universe indexed by $`i\in \{1,\dots,N\}`$ it can be shown that the no arbitrage condition implies the existence of a random variable $`\{M_t\}_t`$ called the **stochastic discount factor**, such that the excess-returns time series $R_{t}^e = (R_{t,i}^e)_i$ (in vector notation) satisfies
-$$
+For an asset universe indexed by $`i\in \{1,\dots,N\}`$ it can be shown that the no arbitrage condition implies the existence of a random variable $`\{M_t\}_t`$ called the **stochastic discount factor**, such that the excess-returns time series $`R_{t}^e = (R_{t,i}^e)_i`$ (in vector notation) satisfies
+```math
 (1)\qquad\mathbb{E}_t[M_{t+1}R_{t+1}^e] = 0.
-$$
-Here $\mathbb E_t$ is the expectation operator w.r.t. information known at time $t$. One can think of $M_{t}$ as modeling the marginal utility of an investment in various assets at time $t$. Then the no arbitrage condition says that the *expected marginal utility* coming from the excess return from investing in various assets should be equal across assets in the market, as well as equal to zero. This is an agent optimality condition towards which the market is supposed to tend over time. Given the conditional expectation formulation in (1), one can express the one-step ahead stochastic discount factor $M_{t+1}$ also through the return of a portfolio with weights $\omega_t$, called the *SDF-portfolio*. 
+```
+Here $`\mathbb E_t`$ is the expectation operator w.r.t. information known at time $`t`$. One can think of $`M_{t}`$ as modeling the marginal utility of an investment in various assets at time $`t`$. Then the no arbitrage condition says that the *expected marginal utility* coming from the excess return from investing in various assets should be equal across assets in the market, as well as equal to zero. This is an agent optimality condition towards which the market is supposed to tend over time. Given the conditional expectation formulation in (1), one can express the one-step ahead stochastic discount factor $`M_{t+1}`$ also through the return of a portfolio with weights $`\omega_t`$, called the *SDF-portfolio*. 
 
 It can be shown that in a frictionless and complete financial market, which satisfies the assumptions of the Efficient Market Hypothesis (EHM):
-$$
+```math
 (2)\qquad M_{t+1} = 1-\omega_t \cdot R_{t+1}^e, 
-$$
-where $\omega_t$ are the portfolio weights **that maximize the Sharpe ratio in the asset universe**. 
-Suppose one uses either of the relations (1) or (2) to estimate the return of the SDF-portfolio given by $$F_{t+1} = \omega_t \cdot R_{t+1}^e.$$ Simple algebra leads to the following estimate for the future return of an asset. 
-$$
+```
+where $`\omega_t`$ are the portfolio weights **that maximize the Sharpe ratio in the asset universe**. 
+Suppose one uses either of the relations (1) or (2) to estimate the return of the SDF-portfolio given by 
+```math
+F_{t+1} = \omega_t \cdot R_{t+1}^e.
+```
+ Simple algebra leads to the following estimate for the future return of an asset. 
+```math
 (3)\qquad \mathbb E_t[R_{t+1}^e] = \left(\frac{Cov_t(F_{t+1},R_{t+1}^e)}{Var_t[F_{t+1}]}\right)\cdot \frac{Var_t[F_{t+1}]}{E_t[F_{t+1}]} =: \beta_{t} \cdot\lambda_t.
-$$
+```
 This is the prediction of the one-step ahead excess return of an asset based on a single risk factor and with time-dependent loading on the single risk factor.
-$\lambda_t$ is a measure of the systematic risk in the market, whereas $\beta_t$ a vector of exposures of the assets in the market to these risks. One can use statistical properties of the estimate of the return of the SDF-portfolio $F_t$ to assess the performance of a strategy which is rewarded for taking up the systematic risk in the market. Below we consider **Sharpe ratio, Sortino ratio, Calmar ratio, CAGR**, but also **drawdown** and **leverage** to characterize the performance of the SDF-portfolio. 
+$`\lambda_t`$ is a measure of the systematic risk in the market, whereas $`\beta_t`$ a vector of exposures of the assets in the market to these risks. One can use statistical properties of the estimate of the return of the SDF-portfolio $`F_t`$ to assess the performance of a strategy which is rewarded for taking up the systematic risk in the market. Below we consider **Sharpe ratio, Sortino ratio, Calmar ratio, CAGR**, but also **drawdown** and **leverage** to characterize the performance of the SDF-portfolio. 
 
-If one has an estimate of the return of the SDF-portfolio $\hat{F_t}$, this leads to estimates of the excess return vector $\hat R^e_{t+1}$, via estimates of the common risk factor $\hat\lambda_t$, and risk exposures $\hat\beta_t$. One can show that the betas are up to a scaling factor equal to $\mathbb E_t[F_{t+1}\cdot R_{t+1}]$. Hence one can estimate the betas by estimating the conditional expectation $\mathbb E_t[F_{t+1}\cdot R_{t+1}]$.
+If one has an estimate of the return of the SDF-portfolio $`\hat{F_t}`$, this leads to estimates of the excess return vector $\hat R^e_{t+1}$, via estimates of the common risk factor $`\hat\lambda_t`$, and risk exposures $`\hat\beta_t`$. One can show that the betas are up to a scaling factor equal to $`\mathbb E_t[F_{t+1}\cdot R_{t+1}]`$. Hence one can estimate the betas by estimating the conditional expectation $`\mathbb E_t[F_{t+1}\cdot R_{t+1}]`$.
 
 This in turn can be used, by interpreting (3) as a regression equation, to calculate the residual unexplained by the risk factor. One arrives at the characterization of the pricing error 
-$$
+```math
 (4)\qquad \hat\epsilon_{t+1} = R_{t+1}^e -\hat R_{t+1}^e = \left(\textbf{Id}-\hat\beta_t(\hat\beta_t^T\hat\beta_t)^{-1}\hat\beta_t^T\right)R_{t+1}^e.
-$$
+```
 This residual can be used to assess the variance explainability of the factor model. 
 
 ### 1.2 Modeling
 
 Our asset universe consists of a large cross section of corporate bonds in the U.S. market from February 1973 to January 2020. Such a wide cross section of assets is inherently imbalanced: bonds of the same issuer differ in maturity so that over time the universe of assets available for portfolio construction changes. This natural imbalancedness needs to be taken into account carefully in the coding of the ML procedures, so that we do not introduce inadvertently any look-ahead bias in the estimation. In addition to the imbalanced bond-level dataset, we also estimate the SDF based on a smaller balanced dataset of 40 portfolios that sort the bond-level data according to various bond characteristics.
 
-In the decomposition $F_{t+1} = \omega_t \cdot R_{t+1}^e$ we model the portfolio weights as feed-forward neural networks of feature sets available at time $t$. In detail, we consider the following feature sets:
+In the decomposition $`F_{t+1} = \omega_t \cdot R_{t+1}^e`$ we model the portfolio weights as feed-forward neural networks of feature sets available at time $`t`$. In detail, we consider the following feature sets:
 
-1. Full estimation: features to estimate the weight of an asset $\omega_{t,i}$ include the macro time series, the bond characteristics and the equity/firm characteristics of the issuer of the bond. See the section on **Data** for a more detailed description of the data.
+1. Full estimation: features to estimate the weight of an asset $`\omega_{t,i}`$ include the macro time series, the bond characteristics and the equity/firm characteristics of the issuer of the bond. See the section on **Data** for a more detailed description of the data.
 2. Estimation without macro: only the bond characteristics and the equity/firm characteristics.
 
 For robustness, we also consider versions of the full estimation procedure 1., where we leave out financials and REITs from the dataset.[^1]
 
 [^1]: Jetlir Duraj thanks Rinald Murataj for suggesting this robustness exercise. 
 
-#### Approach 1 for estimating $F_t$: minimize mispricing loss (MP-min)
+#### Approach 1 for estimating $`F_t`$: minimize mispricing loss (MP-min)
 
-Equation (1) can be used to estimate $F_{t+1}$ via the decomposition $M_{t+1} = 1-\omega_t \cdot R_{t+1}^e$, using as loss the $L^2$-deviation from (1). This leads to the following statistical loss, where the periods available are from $1$ to $T$: 
+Equation (1) can be used to estimate $`F_{t+1}`$ via the decomposition $`M_{t+1} = 1-\omega_t \cdot R_{t+1}^e`$, using as loss the $`L^2`$-deviation from (1). This leads to the following statistical loss, where the periods available are from $`1`$ to $`T`$: 
 
-$$
+```math
 \textrm{(5) Mispricing loss: }\qquad 
     \frac{1}{N}\sum_{i=1}^N\frac{|T_i|}{T} \left\lVert\frac{1}{|T_i|}\sum_{t\in T_i}\left(1-F_{t+1}\right) R_{t+1,i}^e\right\rVert^2,
-$$
-where $T_i$ is the set of dates for which asset $i$ is available. 
+```
+where $`T_i`$ is the set of dates for which asset $`i`$ is available. 
 
-#### Approach 2 for estimating $F_t$: maximize Sharpe ratio (SR-max)
+#### Approach 2 for estimating $`F_t`$: maximize Sharpe ratio (SR-max)
 
-Alternatively, one can try to choose weights $\omega_t$ with the aim of maximizing the Sharpe ratio. This would lead to the following empirical maximization objective.
+Alternatively, one can try to choose weights $`\omega_t`$ with the aim of maximizing the Sharpe ratio. This would lead to the following empirical maximization objective.
 
-$$
+```math
 \textrm{(6) Sharpe ratio: }\qquad \frac{mean((F_{t})_t)}{stdev((F_{t})_t)}.
-$$
+```
 
 Because we use stochastic gradient descent-types of algorithms for the optimization, this objective is not numerically adequate during the training phase of the ML algorithms. Namely, the SGD-type algorithms will try to minimize empirically the denominator of the expression leading thus to very high Sharpe ratios in the train set but which do not generalize in the test set. We use instead a linearized version of the Sharpe ratio for training purposes:
 
-$$
+```math
 \textrm{(7) Linearized Sharpe ratio: }\qquad mean((F_t)_t)-\gamma\cdot stdev((F_{t})_t).
-$$
-Here $\gamma$ can be interpreted as a risk aversion parameter. We keep the original formulation of Sharpe ratio for model validation, and hyperparameter selection. 
+```
+Here $`\gamma`$ can be interpreted as a risk aversion parameter. We keep the original formulation of Sharpe ratio for model validation, and hyperparameter selection. 
 
 For a fixed feature set, the optimization problem to solve becomes then
-$$
+```math
 min_{\omega_t\in NN, F_{t+1}=\omega_t\cdot R_{t+1}^e}\quad Loss((\omega_t\cdot R_{t+1}^e)_t),
-$$
+```
 where Loss in Approach 1 is given by (5), and loss in Approach 2 is given by (7) during training and (6) during validation and testing. 
  
 We compare these two approaches thoroughly in the **Results** section. The degree of deviation between the two can be interpreted as a measure of the inefficiency in the U.S. corporate bonds market.  
@@ -87,27 +91,28 @@ We compare these two approaches thoroughly in the **Results** section. The degre
 
 The weights produced from the neural networks do not generalize well without an additional normalization. We normalize them on the batch level using an Euclidean norm. As a last step before calculating the loss, one can normalize the weights $\omega_t$ through their $L^2$ or $L^1$ norm, multiplied with a constant that models a leverage bound. Note that the $L^1$ norm of the $\omega_t$-s can be interpreted as the leverage of the portfolio. Normalizing w.r.t. $L^2$ and $L^1$ leads to different final portfolios:
 
-- $L^1$ normalization focuses weights in a few assets and makes the rest of the weights comparatively small. This may diminish the diversification effects of the portfolio, but also lower trading costs, in case of convex costs, because only a few assets are traded at a time.
-- $L^2$ normalization produces a more evenly distributed portfolio, where most of the weights are bounded away from zero. This may strengthen the diversification effects, but also leads to higher trading costs.
+- $`L^1`$ normalization focuses weights in a few assets and makes the rest of the weights comparatively small. This may diminish the diversification effects of the portfolio, but also lower trading costs, in case of convex costs, because only a few assets are traded at a time.
+- $`L^2`$ normalization produces a more evenly distributed portfolio, where most of the weights are bounded away from zero. This may strengthen the diversification effects, but also leads to higher trading costs.
 
-We opted for the $L^2$ normalization since we do not model trading costs. In contrast to a bound on the $L^1$ norm, $L^2$ normalization allows some room for the algorithm to pick the 'right' leverage in a time-varying manner. A $L^2$-bound on weights is tantamount to a weak bound on leverage. Namely, for a batch size $n$, the norm inequalities say
-$$
+We opted for the $L^2$ normalization since we do not model trading costs. In contrast to a bound on the $`L^1`$ norm, $`L^2`$ normalization allows some room for the algorithm to pick the 'right' leverage in a time-varying manner. A $L^2$-bound on weights is tantamount to a weak bound on leverage. Namely, for a batch size $`n`$, the norm inequalities say
+```math
 \lVert\omega_t\rVert_1 \leq \sqrt{n}\lVert\omega_t\rVert_2,
-$$
-so that a bound $C$ on $L^2$-norm of the weights can translate to a varying amount of leverage of the SDF portfolio on the date level, depending on how many dates are present in the batch. Heuristically, if the typical date contains $m$ assets, the number of dates in the batch is $\approx \frac{n}{m}$. This leads to a heuristic upper bound on date-level leverage for a batch of size $n$ of 
-$$
+```
+so that a bound $`C`$ on $`L^2`$-norm of the weights can translate to a varying amount of leverage of the SDF portfolio on the date level, depending on how many dates are present in the batch. Heuristically, if the typical date contains $m$ assets, the number of dates in the batch is $`\approx \frac{n}{m}`$. This leads to a heuristic upper bound on date-level leverage for a batch of size $n$ of 
+```math
 \frac{C\cdot m}{\sqrt{n}}.
-$$
+```
 
 #### On predictability.
 
 Our data are monthly, which are notoriously low on predictability, as market forces typically have had enough time to exploit it. Moreover, the bond-level data is highly imbalanced. Hence, to assess predictability of the asset pricing model, we use aggregate measures of predictability, the aggregated ones used in [Chen, Pelger, Zhu 2021](https://pubsonline.informs.org/doi/abs/10.1287/mnsc.2023.4695):
-$$
-\textrm{(explained variation)}\quad EV = 1-\frac{\frac{1}{T}\sum_{t=1}^T \textrm{cross-sec-mean}(\epsilon_t^2)}{\frac{1}{T}\sum_{t=1}^T \textrm{cross-sec-mean}((R_t^e)^2)},$$
-
-$$\textrm{(average mispricing error)}\quad \textrm{XS-R}^2 =  1-\frac{\frac{1}{N} \sum_{i=1}^N \frac{T_i}{T}\left(\textrm{t-series-mean}(\epsilon_i)\right)^2}{\frac{1}{N} \sum_{i=1}^N \frac{T_i}{T}\left(\textrm{t-series-mean}(R_i)\right)^2}.
-$$
-$EV$ is the $R^2$ of a cross-sectional regression on the loadings. The XS-$R^2$ is the average pricing error over time, divided by the average return over time.
+```math
+\textrm{(explained variation)}\quad EV = 1-\frac{\frac{1}{T}\sum_{t=1}^T \textrm{cross-sec-mean}(\epsilon_t^2)}{\frac{1}{T}\sum_{t=1}^T \textrm{cross-sec-mean}((R_t^e)^2)}
+```
+```math
+\textrm{(average mispricing error)}\quad \textrm{XS-R}^2 =  1-\frac{\frac{1}{N} \sum_{i=1}^N \frac{T_i}{T}\left(\textrm{t-series-mean}(\epsilon_i)\right)^2}{\frac{1}{N} \sum_{i=1}^N \frac{T_i}{T}\left(\textrm{t-series-mean}(R_i)\right)^2}.
+```
+$`EV`$ is the $`R^2`$ of a cross-sectional regression on the loadings. The XS-$`R^2`$ is the average pricing error over time, divided by the average return over time.
 
 
 ## 2. Data
@@ -169,7 +174,7 @@ All of the architectures win some of the time, so none is redundant.
 - for the beta-network estimation:
   - MSE loss throughout
   
-  Here we first create the labels $F_{t+1}\cdot R_{t+1}$ using the output $(F_{t+1})_{t+1}$ of the SDF estimation and then train a network to predict these labels, estimating thus $\mathbb E_t[F_{t+1}\cdot R_{t+1}]$. We use as predictive features the same features as the ones used in the SDF estimation to calculate the portfolio weights $\omega_t$.
+  Here we first create the labels $`F_{t+1}\cdot R_{t+1}`$ using the output $`(F_{t+1})_{t+1}`$ of the SDF estimation and then train a network to predict these labels, estimating thus $`\mathbb E_t[F_{t+1}\cdot R_{t+1}]`$. We use as predictive features the same features as the ones used in the SDF estimation to calculate the portfolio weights $`\omega_t`$.
 
 #### Fixed hyperparameters, choices for a fixed architecture:
 
@@ -285,17 +290,12 @@ We summarize the insights for bond-level data:
 4. The discrepancy between SR-max and MP-loss becomes smaller when leaving out financials+REITs. 
 5. SR-max is always faster to train than MP-min. The discrepancy is larger for bond-level data than for EJN portfolios. 
 
-![](./bonds_cumret_testset.png )
+![](./bonds_cumret_testset.png ) ![](./bonds_drawdown_testset.png ) ![](./bonds_leverage_testset.png )
 
-![](./bonds_leverage_testset.png )
-
-![](./bonds_drawdown_testset.png )
 
 To exemplify the difference between the two approaches, SR-max and MP-min, we calculate the split of the SDF portfolio return across industries in the test set. The following graphs depict the cumulative returns split according to industries.
 
-![](./bonds_cumret_ind_mp.png )
-
-![](./bonds_cumret_ind_sr.png )
+![](./bonds_cumret_ind_mp.png ) ![](./bonds_cumret_ind_sr.png )
 
 We see a different evolution of the index of **energy** (enrgy). Both SR-max and MP-min investment in the energy sector sustain losses in 2015 and early 2016, but under MP-min a greater degree of the cumulative returns had come from the energy sector in the preceding years. Hence it never recovers afterwards to the previous levels. The SR-max investment in the energy sector does recover near the end of the test set. 
 
@@ -329,11 +329,11 @@ We see that, except for the 1980s, the low-volatility-small-positive-returns sta
 ### 5.1. The GAN model of Chen, Pelger, Zhu (2021)
 
 In a recent [paper](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3350138) (see also their [code](https://github.com/jasonzy121/Deep_Learning_Asset_Pricing)), Chen, Pelger and Zhu estimate the SDF portfolio for the U.S. stock market using as features individual stock characteristics as well as a large set of macro time series similar to ours. The GAN architecture they consider uses a more general version of the mispricing loss (5), that takes into account test assets. Namely, they consider the following generalized mispricing loss function 
-$$
+```math
 (8)\qquad 
     \min_{\omega_t \textrm{s.t.} F_{t+1}=\omega_t\cdot R_{t+1}^e}\max_{g_t}\quad\frac{1}{N}\sum_{i=1}^N\frac{|T_i|}{T} \left\lVert\frac{1}{|T_i|}\sum_{t\in |T_i|}\left(1-F_{t+1}\right) R_{t+1,i}^e\cdot g_{t,i}\right\rVert^2,
-$$
-where $T_i$ is the set of dates for which asset $i$ is available. $g_{t,i}$ are *test assets/portfolios*. These are portfolio returns that act as a critic to the construction of the weights $\omega_t$ in an adversarial way. The test assets $g_t$ are modeled as a neural network function of the same set of individual and aggregate characteristics as the weights $\omega_t$ (Moments Network). The weights themselves are produced from a separate neural network (SDF network). In both networks, the macro data are passed through a LSTM network, the individual characteristics through a FFN and the output of both through another FFN layer to produce the weights. Moreover, they feed the train, validation and test datasets each separately in one batch, hence the batch size is not used as a hyperparameter. Note that their stocks dataset is also inherently imbalanced over time as ours is. They deal with this imbalancedness by feeding the batch as a balanced dataset where the missing returns are replaced by a dummy value UNK.  
+```
+where $`T_i`$ is the set of dates for which asset $`i`$ is available. $`g_{t,i}`$ are *test assets/portfolios*. These are portfolio returns that act as a critic to the construction of the weights $`\omega_t`$ in an adversarial way. The test assets $g_t$ are modeled as a neural network function of the same set of individual and aggregate characteristics as the weights $`\omega_t`$ (Moments Network). The weights themselves are produced from a separate neural network (SDF network). In both networks, the macro data are passed through a LSTM network, the individual characteristics through a FFN and the output of both through another FFN layer to produce the weights. Moreover, they feed the train, validation and test datasets each separately in one batch, hence the batch size is not used as a hyperparameter. Note that their stocks dataset is also inherently imbalanced over time as ours is. They deal with this imbalancedness by feeding the batch as a balanced dataset where the missing returns are replaced by a dummy value UNK.  
 
 We have implemented a more online and more memory efficient version of their algorithm. In particular, our version of the GAN algorithm has the following differences:
 
