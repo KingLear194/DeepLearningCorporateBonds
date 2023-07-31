@@ -210,44 +210,44 @@ SDF portfolio performance on test set. *Max lev* stands for maximum leverage, *m
 | Dataset | Objective  |  Sharpe| Sortino |Calmar| Max drawdown| Max lev | Mean lev|
 |---|---|---|--|--|--|--|--|
 | full feature set | MP |  0.17 | 6.30 | 0.02 | 0.20 | 3.15 | 1.29 |
-| full feature set | SR |  0.27 | 3.93 | 0.03 | 0.27 | 4.62 | 2.42 |
+| full feature set | SR-max |  0.27 | 3.93 | 0.03 | 0.27 | 4.62 | 2.42 |
 | no macro | MP |  0.12 | 0.46 | 0.02 | 0.56 | 4.66 | 3.51 |
-| no macro | SR |  0.29 | 2.54 | 0.05 | 0.29 | 4.29 | 2.58 |
+| no macro | SR-max |  0.29 | 2.54 | 0.05 | 0.29 | 4.29 | 2.58 |
 | no fins+REITs | MP | 0.25  | 2.83 | 0.03 | 0.28 | 2.70 | 2.19 |
-| no fins+REITs | SR | 0.26  | 2.02 | 0.03 | 0.39 | 3.97 | 3.20 |
+| no fins+REITs | SR-max | 0.26  | 2.02 | 0.03 | 0.39 | 3.97 | 3.20 |
 
 Predictability results
 
-| Dataset | Objective | EV  | XS-$R^2$ |
+| Dataset | Objective | EV  | XS-$`R^2`$ |
 |---|---|---|--|
 | full feature set | MP | 0.23  | 0.45 |
-| full feature set | SR |  0.19 | 0.39 |
+| full feature set | SR-max |  0.19 | 0.39 |
 | no macro | MP |  0.20 | 0.27 |
-| no macro | SR | 0.12  | 0.18 |
+| no macro | SR-max | 0.12  | 0.18 |
 | no fins+REITs | MP | 0.22  | 0.36 |
-| no fins+REITs | SR |  0.16 | 0.30 |
+| no fins+REITs | SR-max |  0.16 | 0.30 |
 
 Monthly alpha results vs. common risk factors
 
 |  Dataset | Objective | alpha vs. SPY  | p-val vs. SPY  |  alpha vs. FF3 |  p-val vs. FF3 |  alpha vs. FF5 |  p-val vs. FF5 |
 |---|---|---|---|---|---|---|---|
 | full feature set | MP |  0.003 | 0.06 | 0.003  |  0.06 | 0.003  |  0.07 |
-| full feature set | SR  |  0.007 | 0.01 | 0.006  |  0.02 |  0.006 |  0.02 |
+| full feature set | SR-max  |  0.007 | 0.01 | 0.006  |  0.02 |  0.006 |  0.02 |
 | no macro | MP |  0.001 | 0.86 |  0.002 |  0.60 |  0.002 |  0.64 |
-| no macro | SR | 0.010 | 0.002 |  0.008 |  0.01 | 0.009  |  0.01 |
+| no macro | SR-max | 0.010 | 0.002 |  0.008 |  0.01 | 0.009  |  0.01 |
 | no fins+REITs | MP |  0.005 | 0.02 | 0.005  |  0.04 | 0.005  |  0.06 |
-| no fins+REITs | SR | 0.008 | 0.01 |  0.007 | 0.03  |  0.007 | 0.05  |
+| no fins+REITs | SR-max | 0.008 | 0.01 |  0.007 | 0.03  |  0.007 | 0.05  |
 
 Monthly alpha results vs. EJN portfolios
 
 |  Dataset | Objective | alpha vs. EJN ports  | p-val vs. EJN ports  |
 |---|---|---|---|
 | full feature set | MP  | 0.001  | 0.70 |
-| full feature set | SR  | 0.001  | 0.32 |
+| full feature set | SR-max  | 0.001  | 0.32 |
 | no macro | MP | -0.001  | 0.48 |
-| no macro | SR | 0.003 | 0.001 |
+| no macro | SR-max | 0.003 | 0.001 |
 | no fins+REITs | MP | +0.000 | 0.48 |
-| no fins+REITs | SR | 0.001 | 0.48 |
+| no fins+REITs | SR-max | 0.001 | 0.48 |
 
 ### 4.2 Results for EJN portfolio data
 
@@ -256,27 +256,27 @@ SDF portfolio performance on test set. *Max lev* stands for maximum leverage, *m
 | Dataset | Objective  |  Sharpe | Sortino | Calmar | Max drawdown| Max lev| Mean lev|
 |---|---|---|---|---|---|---|---|
 | full feature set | MP |  0.25 | 14.09 | 0.03 | 0.06 | 1.15 | 0.44 |
-| full feature set | SR |  0.24 | 12.28 | 0.03 | 0.07 | 1.14 | 0.44 |
+| full feature set | SR-max |  0.24 | 12.28 | 0.03 | 0.07 | 1.14 | 0.44 |
 | no macro | MP |  0.22 | 5.01 | 0.03 | 0.17 | 2.70 | 0.99 |
-| no macro | SR |  0.22 | 12.04 | 0.03 | 0.09 | 1.23 | 0.56 |
+| no macro | SR-max |  0.22 | 12.04 | 0.03 | 0.09 | 1.23 | 0.56 |
 
 Predictability results.
 
-| Dataset | Objective | EV | XS-$R^2$ |
+| Dataset | Objective | EV | XS-$`R^2`$ |
 |---|---|---|---|
-| full feature set | MP | 0.64  | 0.88 |
-| full feature set | SR |  0.70 | 0.92 |
-| no macro | MP |  0.40 | 0.71 |
-| no macro | SR | 0.65  | 0.88 |
+| full feature set | MP-min | 0.64  | 0.88 |
+| full feature set | SR-max |  0.70 | 0.92 |
+| no macro | MP-min |  0.40 | 0.71 |
+| no macro | SR-max | 0.65  | 0.88 |
 
 Monthly alpha results
 
 |  Dataset | Objective | alpha vs. SPY  | p-val vs. SPY  |  alpha vs. FF3 |  p-val vs. FF3 |  alpha vs. FF5 |  p-val vs. FF5 |
 |---|---|---|---|---|---|---|---|
-| full feature set | MP  |  0.001 |  0.03 | 0.001  |  0.04 | 0.001 |  0.07 |
-| full feature set | SR  |  0.001 |  0.04 | 0.001  |  0.06 |  0.001 |  0.09 |
-| no macro | MP |  0.003 | 0.06 |  0.003 |  0.08 |  0.002 |  0.12 |
-| no macro | SR | 0.002 | 0.06 |  0.001 | 0.07  | 0.001  |  0.10 |
+| full feature set | MP-min  |  0.001 |  0.03 | 0.001  |  0.04 | 0.001 |  0.07 |
+| full feature set | SR-max  |  0.001 |  0.04 | 0.001  |  0.06 |  0.001 |  0.09 |
+| no macro | MP-min |  0.003 | 0.06 |  0.003 |  0.08 |  0.002 |  0.12 |
+| no macro | SR-max | 0.002 | 0.06 |  0.001 | 0.07  | 0.001  |  0.10 |
 
 ### 4.3 Summary of results from the neural networks exercise
 
@@ -290,18 +290,20 @@ We summarize the insights for bond-level data:
 4. The discrepancy between SR-max and MP-loss becomes smaller when leaving out financials+REITs. 
 5. SR-max is always faster to train than MP-min. The discrepancy is larger for bond-level data than for EJN portfolios. 
 
-![](./bonds_cumret_testset.png ) ![](./bonds_drawdown_testset.png ) ![](./bonds_leverage_testset.png )
+The following figures compare cumulative returns, drawdown and leverage for SR-max and MP-min.
+
+![](./Figures/bonds_cumret_testset.png ) ![](./Figures/bonds_drawdown_testset.png ) ![](./Figures/bonds_leverage_testset.png )
 
 
 To exemplify the difference between the two approaches, SR-max and MP-min, we calculate the split of the SDF portfolio return across industries in the test set. The following graphs depict the cumulative returns split according to industries.
 
-![](./bonds_cumret_ind_mp.png ) ![](./bonds_cumret_ind_sr.png )
+![](./Figures/bonds_cumret_ind_mp.png ) ![](./Figures/bonds_cumret_ind_sr.png )
 
 We see a different evolution of the index of **energy** (enrgy). Both SR-max and MP-min investment in the energy sector sustain losses in 2015 and early 2016, but under MP-min a greater degree of the cumulative returns had come from the energy sector in the preceding years. Hence it never recovers afterwards to the previous levels. The SR-max investment in the energy sector does recover near the end of the test set. 
 
 To see how the total weight on the energy sector evolves under the two approaches, we calculate the signed leverage share of the energy sector: for each date $sign(sum(\textrm{weights of energy}))\times\frac{sum(abs(\textrm{weights of energy}))}{\textrm{total leverage}}$.
 
-![](./bonds_enrgy_signed_lev_mp_vs_sr.png)
+![](./Figures/bonds_enrgy_signed_lev_mp_vs_sr.png)
 
 We see that this statistic is much smoother for SR-max, it never crosses in negative territory and remains relatively stable over time. For several industries, though not all, we see a similar distinction in the evolution of their share in the overall portfolio leverage between SR-max and MP-min. 
 
@@ -321,9 +323,11 @@ We run a Gaussian HMM with two and three states on the 40 EJN portfolios. This i
 
 The evolution of the cumulative returns of the equally weighted index on bond portfolios over time is depicted below.
 
-![](./StateEvolution_equalw_index.png )
+![](./Figures/StateEvolution_equalw_index.png )
 
 We see that, except for the 1980s, the low-volatility-small-positive-returns state dominates over time and this dominance continues in the test set of the neural networks exercise (from February 2006 to January 2020). 
+
+
 ## 5. Other
 
 ### 5.1. The GAN model of Chen, Pelger, Zhu (2021)
