@@ -85,7 +85,7 @@ min_{\omega_t\in NN, F_{t+1}=\omega_t\cdot R_{t+1}^e}\quad Loss((\omega_t\cdot R
 ```
 where Loss in Approach 1 is given by (5), and loss in Approach 2 is given by (7) during training and (6) during validation and testing. 
  
-We compare these two approaches thoroughly in the **Results** section. The degree of deviation between the two can be interpreted as a measure of the inefficiency in the U.S. corporate bonds market.  
+We compare these two approaches thoroughly in the [Results](#4-results) section. The degree of deviation between the two can be interpreted as a measure of the inefficiency in the U.S. corporate bonds market.  
 
 #### On modeling leverage
 
@@ -197,7 +197,7 @@ This allows for somewhat higher leverage in the case of bond-level data, to glea
 - $L^1$ regularization: ["none", 0.001, 0.01, 0.1]
 - $L^2$ regularization: ["none", 0.001, 0.01, 0.1]
 
-## 4. Results {#results}
+## 4. Results
 
 Winning hyperparameters for every estimation can be found in the appendix to the [paper](https://drive.google.com/file/d/1bjoZ1UWcAT0L4ePAecm2yIl7ba9Id9aQ/view?usp=sharing). All results below are reported for the respective test set. 
 
@@ -209,44 +209,44 @@ SDF portfolio performance on test set. *Max lev* stands for maximum leverage, *m
 
 | Dataset | Objective  |  Sharpe| Sortino |Calmar| Max drawdown| Max lev | Mean lev|
 |---|---|---|--|--|--|--|--|
-| full feature set | MP |  0.17 | 6.30 | 0.02 | 0.20 | 3.15 | 1.29 |
+| full feature set | MP-min |  0.17 | 6.30 | 0.02 | 0.20 | 3.15 | 1.29 |
 | full feature set | SR-max |  0.27 | 3.93 | 0.03 | 0.27 | 4.62 | 2.42 |
-| no macro | MP |  0.12 | 0.46 | 0.02 | 0.56 | 4.66 | 3.51 |
+| no macro | MP-min |  0.12 | 0.46 | 0.02 | 0.56 | 4.66 | 3.51 |
 | no macro | SR-max |  0.29 | 2.54 | 0.05 | 0.29 | 4.29 | 2.58 |
-| no fins+REITs | MP | 0.25  | 2.83 | 0.03 | 0.28 | 2.70 | 2.19 |
+| no fins+REITs | MP-min | 0.25  | 2.83 | 0.03 | 0.28 | 2.70 | 2.19 |
 | no fins+REITs | SR-max | 0.26  | 2.02 | 0.03 | 0.39 | 3.97 | 3.20 |
 
 Predictability results
 
 | Dataset | Objective | EV  | XS-$`R^2`$ |
 |---|---|---|--|
-| full feature set | MP | 0.23  | 0.45 |
+| full feature set | MP-min | 0.23  | 0.45 |
 | full feature set | SR-max |  0.19 | 0.39 |
-| no macro | MP |  0.20 | 0.27 |
+| no macro | MP-min |  0.20 | 0.27 |
 | no macro | SR-max | 0.12  | 0.18 |
-| no fins+REITs | MP | 0.22  | 0.36 |
+| no fins+REITs | MP-min | 0.22  | 0.36 |
 | no fins+REITs | SR-max |  0.16 | 0.30 |
 
 Monthly alpha results vs. common risk factors
 
 |  Dataset | Objective | alpha vs. SPY  | p-val vs. SPY  |  alpha vs. FF3 |  p-val vs. FF3 |  alpha vs. FF5 |  p-val vs. FF5 |
 |---|---|---|---|---|---|---|---|
-| full feature set | MP |  0.003 | 0.06 | 0.003  |  0.06 | 0.003  |  0.07 |
+| full feature set | MP-min |  0.003 | 0.06 | 0.003  |  0.06 | 0.003  |  0.07 |
 | full feature set | SR-max  |  0.007 | 0.01 | 0.006  |  0.02 |  0.006 |  0.02 |
-| no macro | MP |  0.001 | 0.86 |  0.002 |  0.60 |  0.002 |  0.64 |
+| no macro | MP-min |  0.001 | 0.86 |  0.002 |  0.60 |  0.002 |  0.64 |
 | no macro | SR-max | 0.010 | 0.002 |  0.008 |  0.01 | 0.009  |  0.01 |
-| no fins+REITs | MP |  0.005 | 0.02 | 0.005  |  0.04 | 0.005  |  0.06 |
+| no fins+REITs | MP-min |  0.005 | 0.02 | 0.005  |  0.04 | 0.005  |  0.06 |
 | no fins+REITs | SR-max | 0.008 | 0.01 |  0.007 | 0.03  |  0.007 | 0.05  |
 
 Monthly alpha results vs. EJN portfolios
 
 |  Dataset | Objective | alpha vs. EJN ports  | p-val vs. EJN ports  |
 |---|---|---|---|
-| full feature set | MP  | 0.001  | 0.70 |
+| full feature set | MP-min  | 0.001  | 0.70 |
 | full feature set | SR-max  | 0.001  | 0.32 |
-| no macro | MP | -0.001  | 0.48 |
+| no macro | MP-min | -0.001  | 0.48 |
 | no macro | SR-max | 0.003 | 0.001 |
-| no fins+REITs | MP | +0.000 | 0.48 |
+| no fins+REITs | MP-min | +0.000 | 0.48 |
 | no fins+REITs | SR-max | 0.001 | 0.48 |
 
 ### 4.2 Results for EJN portfolio data
@@ -255,9 +255,9 @@ SDF portfolio performance on test set. *Max lev* stands for maximum leverage, *m
 
 | Dataset | Objective  |  Sharpe | Sortino | Calmar | Max drawdown| Max lev| Mean lev|
 |---|---|---|---|---|---|---|---|
-| full feature set | MP |  0.25 | 14.09 | 0.03 | 0.06 | 1.15 | 0.44 |
+| full feature set | MP-min |  0.25 | 14.09 | 0.03 | 0.06 | 1.15 | 0.44 |
 | full feature set | SR-max |  0.24 | 12.28 | 0.03 | 0.07 | 1.14 | 0.44 |
-| no macro | MP |  0.22 | 5.01 | 0.03 | 0.17 | 2.70 | 0.99 |
+| no macro | MP-min |  0.22 | 5.01 | 0.03 | 0.17 | 2.70 | 0.99 |
 | no macro | SR-max |  0.22 | 12.04 | 0.03 | 0.09 | 1.23 | 0.56 |
 
 Predictability results.
