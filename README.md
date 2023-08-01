@@ -1,4 +1,4 @@
-# Deep Learning CorporateBonds
+# Deep Learning for Corporate Bonds
 
 **Authors:** Jetlir Duraj, Oliver Giesecke
 
