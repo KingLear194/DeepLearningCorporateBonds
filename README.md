@@ -4,7 +4,7 @@
 
 Code Repo for project Deep Learning For Corporate Bonds
 
-[Full paper](https://drive.google.com/file/d/1bjoZ1UWcAT0L4ePAecm2yIl7ba9Id9aQ/view?usp=sharing)
+[Full paper](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4527372)
 
 For a shorter project summary than the full paper go to ```project_summary.md```.
 
